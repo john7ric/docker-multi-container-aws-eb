@@ -17,9 +17,9 @@ after_success:
   - docker build john7ric/multi-server ./server
   - docker build john7ric/multi-worker ./worker
   # login to docker cli
-  - echo "$DOCKER_PASWD" | docker login -u "$DOCKER_USER" --password-stdin
+  - docker login -u "$DOCKER_USER" -p "$DOCKER_PASWD" docker.io
 
-  # push docker images to docker hub
+  # push docker images to dockerhub
 
   - docker push john7ric/multi-client
   - docker push john7ric/multi-nginx
