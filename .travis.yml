@@ -4,7 +4,7 @@ services:
   - docker
 
 before_install:
-  - docker build -t john7ric/multi-client-test -f Dockerfile.dev ./client
+  - docker build -t john7ric/multi-client-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docekr run -e CI=true john7ric/multi-client-test npm run test
@@ -16,7 +16,7 @@ after_success:
   - docker build john7ric/multi-server ./server
   - docker build john7ric/multi-worker ./worker
   # login to docker cli
-  - echo "$DOCKER_PASWD" | docker login -u "$DOCKER_PSWD" --password-stdin
+  - echo "$DOCKER_PASWD" | docker login -u "$DOCKER_USER" --password-stdin
 
   # push docker images to docker hub
 
